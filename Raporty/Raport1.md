@@ -1,8 +1,8 @@
-** Raport I, zrobione: **
+**Raport I, zrobione:**
 
 - nauka podstaw Javy
 - nauka podstaw Android Studio 
 
-** Plany na najbliższy cza **
+**Najbliższe plany:**
 - utworzenie projektu
 - przygotowanie początkowych layoutów strony
