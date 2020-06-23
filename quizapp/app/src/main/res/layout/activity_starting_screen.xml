@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="Welcome to the QuizApp"
-        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="Quizuj!"
+        android:textColor="@color/colorText"
         android:textSize="30sp" />
     <TextView
         android:id="@+id/text_view_highscore"
@@ -22,12 +23,15 @@
         android:layout_above="@id/button_start_quiz"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
-        android:text="Highscore: 0"
-        android:textSize="20sp" />
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Twój najwyższy wynik: 0"
+        android:textColor="@color/colorText" />
     <Button
         android:id="@+id/button_start_quiz"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Start Quiz" />
+        android:background="@color/colorTrueButton"
+        android:text="Rozpocznij" />
 </RelativeLayout>
