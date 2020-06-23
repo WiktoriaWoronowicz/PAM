@@ -1,13 +1,11 @@
 package com.example.quizapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 public class StartingScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,11 +1,13 @@
 package com.example.quizapp;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
     private TextView textViewQuestion;
@@ -17,8 +19,10 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton rb2;
     private RadioButton rb3;
     private Button buttonConfirmNext;
-
+    private List<Question> questionList;
     @Override
+
+//    otrzymujemy wszystko z naszej bazy do widoków
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
@@ -31,5 +35,7 @@ public class QuizActivity extends AppCompatActivity {
         rb2 = findViewById(R.id.radio_button2);
         rb3 = findViewById(R.id.radio_button3);
         buttonConfirmNext = findViewById(R.id.button_confirm_next);
+        QuizDbHelper dbHelper = new QuizDbHelper(this);
+        questionList = dbHelper.getAllQuestions();
     }
 }
