@@ -10,7 +10,7 @@ import com.example.quizapp.QuizContract.*;
 
 import java.util.ArrayList;
 public class QuizDbHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "QuizAppPAM.db";
+    private static final String DATABASE_NAME = "QuizAppPAM2.db";
     private static final int DATABASE_VERSION = 1;
     private SQLiteDatabase db;
     public QuizDbHelper(Context context) {
@@ -82,7 +82,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
         cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
-        cv.put(QuestionsTable.COLUMN_DIFFICULTY, question.getDifficulty());
+        cv.put(QuestionsTable.COLUMN_DIFFICULTY, question.getCategory());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
     public ArrayList<Question> getAllQuestions() {
@@ -97,7 +97,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
+                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
@@ -118,7 +118,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setDifficulty(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
+                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
                 questionList.add(question);
             } while (c.moveToNext());
         }

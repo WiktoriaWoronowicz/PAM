@@ -11,25 +11,27 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class StartingScreenActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
-    public static final String EXTRA_DIFFICULTY = "extraDifficulty";
+    public static final String EXTRA_DIFFICULTY = "ex" +
+            "traDifficulty";
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String KEY_HIGHSCORE = "keyHighscore";
     private TextView textViewHighscore;
-    private Spinner spinnerDifficulty;
+    private Spinner spinnerCategory;
     private int highscore;
     @Override
+//    tworzymy widok startowy, dołączamy layout, najwyższy wynik oraz dropdown wyboru kategorii
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_screen);
         textViewHighscore = findViewById(R.id.text_view_highscore);
-        spinnerDifficulty = findViewById(R.id.spinner_difficulty);
-        String[] difficultyLevels = Question.getAllDifficultyLevels();
-        ArrayAdapter<String> adapterDifficulty = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, difficultyLevels);
-        adapterDifficulty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDifficulty.setAdapter(adapterDifficulty);
+        spinnerCategory = findViewById(R.id.spinner_category);
+        String[] categoryLevels = Question.getAllCategoryLevels();
+        ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, categoryLevels);
+        adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapterCategory);
         loadHighscore();
         Button buttonStartQuiz = findViewById(R.id.button_start_quiz);
         buttonStartQuiz.setOnClickListener(new View.OnClickListener() {
@@ -39,10 +41,11 @@ public class StartingScreenActivity extends AppCompatActivity {
             }
         });
     }
+//
     private void startQuiz() {
-        String difficulty = spinnerDifficulty.getSelectedItem().toString();
-        Intent intent = new Intent(StartingScreenActivity.this, QuizActivity.class);
-        intent.putExtra(EXTRA_DIFFICULTY, difficulty);
+        String category = spinnerCategory.getSelectedItem().toString();
+        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+        intent.putExtra(EXTRA_DIFFICULTY, category);
         startActivityForResult(intent, REQUEST_CODE_QUIZ);
     }
     @Override

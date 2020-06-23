@@ -11,17 +11,17 @@ public class Question implements Parcelable {
     private String option2;
     private String option3;
     private int answerNr;
-    private String difficulty;
+    private String category;
     public Question() {
     }
     public Question(String question, String option1, String option2,
-                    String option3, int answerNr, String difficulty) {
+                    String option3, int answerNr, String category) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.answerNr = answerNr;
-        this.difficulty = difficulty;
+        this.category = category;
     }
     protected Question(Parcel in) {
         question = in.readString();
@@ -29,7 +29,7 @@ public class Question implements Parcelable {
         option2 = in.readString();
         option3 = in.readString();
         answerNr = in.readInt();
-        difficulty = in.readString();
+        category = in.readString();
     }
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -38,7 +38,7 @@ public class Question implements Parcelable {
         dest.writeString(option2);
         dest.writeString(option3);
         dest.writeInt(answerNr);
-        dest.writeString(difficulty);
+        dest.writeString(category);
     }
     @Override
     public int describeContents() {
@@ -84,13 +84,13 @@ public class Question implements Parcelable {
     public void setAnswerNr(int answerNr) {
         this.answerNr = answerNr;
     }
-    public String getDifficulty() {
-        return difficulty;
+    public String getCategory() {
+        return category;
     }
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
+    public void setCategory(String difficulty) {
+        this.category = difficulty;
     }
-    public static String[] getAllDifficultyLevels() {
+    public static String[] getAllCategoryLevels() {
         return new String[]{
                 CATEGORY_SCIENCE,
                 CATEGORY_MATH,
