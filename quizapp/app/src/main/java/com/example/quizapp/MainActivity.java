@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_QUIZ = 1;
-    public static final String EXTRA_DIFFICULTY = "ex" +
-            "traDifficulty";
+    public static final String EXTRA_CATEGORY = "extraCategory";
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String KEY_HIGHSCORE = "keyHighscore";
     private TextView textViewHighscore;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void startQuiz() {
         String category = spinnerCategory.getSelectedItem().toString();
         Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-        intent.putExtra(EXTRA_DIFFICULTY, category);
+        intent.putExtra(EXTRA_CATEGORY, category);
         startActivityForResult(intent, REQUEST_CODE_QUIZ);
     }
     @Override

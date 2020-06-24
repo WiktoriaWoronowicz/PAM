@@ -63,7 +63,7 @@ public class QuizActivity extends AppCompatActivity {
         textColorDefaultRb = rb1.getTextColors();
         textColorDefaultCd = textViewCountDown.getTextColors();
         Intent intent = getIntent();
-        String category = intent.getStringExtra(MainActivity.EXTRA_DIFFICULTY);
+        String category = intent.getStringExtra(MainActivity.EXTRA_CATEGORY);
         textViewCategory.setText("Kategoria: " + category);
         if (savedInstanceState == null) {
             QuizDbHelper dbHelper = new QuizDbHelper(this);
@@ -166,19 +166,16 @@ public class QuizActivity extends AppCompatActivity {
         switch (currentQuestion.getAnswerNr()) {
             case 1:
                 rb1.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Odpowiedź numer A jest poprawna");
                 break;
             case 2:
                 rb2.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Odpowiedź numer B jest poprawna");
                 break;
             case 3:
                 rb3.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Odpowiedź numer C jest poprawna");
                 break;
         }
         if (questionCounter < questionCountTotal) {
-            buttonConfirmNext.setText("Nastęepny");
+            buttonConfirmNext.setText("Dalej");
         } else {
             buttonConfirmNext.setText("Zakończ");
         }

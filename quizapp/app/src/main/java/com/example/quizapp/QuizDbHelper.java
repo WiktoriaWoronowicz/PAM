@@ -10,7 +10,7 @@ import com.example.quizapp.QuizContract.*;
 
 import java.util.ArrayList;
 public class QuizDbHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "QuizAppPAM2.db";
+    private static final String DATABASE_NAME = "QuizAppPAM5.db";
     private static final int DATABASE_VERSION = 1;
     private SQLiteDatabase db;
     public QuizDbHelper(Context context) {
@@ -27,7 +27,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 QuestionsTable.COLUMN_OPTION2 + " TEXT, " +
                 QuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
-                QuestionsTable.COLUMN_DIFFICULTY + " TEXT" +
+                QuestionsTable.COLUMN_CATEGORY + " TEXT" +
                 ")";
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
         fillQuestionsTable();
@@ -74,6 +74,12 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         Question q12 = new Question("Kto sformuował trzy zasady dynamiki",
                 "Wiktoria Woronowicz", "Einstein", "Newton", 3, Question.CATEGORY_FIZ);
         addQuestion(q12);
+        Question q13 = new Question("Ile wynosi suma kątów w trójkącie",
+                "180", "360", "720", 1, Question.CATEGORY_MATH);
+        addQuestion(q13);
+        Question q14 = new Question("Ile wynosi suma kątów w kwadraciee",
+                "180", "360", "720", 2, Question.CATEGORY_MATH);
+        addQuestion(q14);
     }
     private void addQuestion(Question question) {
         ContentValues cv = new ContentValues();
@@ -82,7 +88,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         cv.put(QuestionsTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionsTable.COLUMN_OPTION3, question.getOption3());
         cv.put(QuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
-        cv.put(QuestionsTable.COLUMN_DIFFICULTY, question.getCategory());
+        cv.put(QuestionsTable.COLUMN_CATEGORY, question.getCategory());
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
     public ArrayList<Question> getAllQuestions() {
@@ -97,19 +103,19 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
+                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_CATEGORY)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
         c.close();
         return questionList;
     }
-    public ArrayList<Question> getQuestions(String difficulty) {
+    public ArrayList<Question> getQuestions(String category) {
         ArrayList<Question> questionList = new ArrayList<>();
         db = getReadableDatabase();
-        String[] selectionArgs = new String[]{difficulty};
+        String[] selectionArgs = new String[]{category};
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME +
-                " WHERE " + QuestionsTable.COLUMN_DIFFICULTY + " = ?", selectionArgs);
+                " WHERE " + QuestionsTable.COLUMN_CATEGORY + " = ?", selectionArgs);
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
@@ -118,7 +124,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 question.setOption2(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_OPTION3)));
                 question.setAnswerNr(c.getInt(c.getColumnIndex(QuestionsTable.COLUMN_ANSWER_NR)));
-                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_DIFFICULTY)));
+                question.setCategory(c.getString(c.getColumnIndex(QuestionsTable.COLUMN_CATEGORY)));
                 questionList.add(question);
             } while (c.moveToNext());
         }

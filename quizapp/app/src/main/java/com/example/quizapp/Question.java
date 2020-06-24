@@ -87,8 +87,8 @@ public class Question implements Parcelable {
     public String getCategory() {
         return category;
     }
-    public void setCategory(String difficulty) {
-        this.category = difficulty;
+    public void setCategory(String category) {
+        this.category = category;
     }
     public static String[] getAllCategoryLevels() {
         return new String[]{
